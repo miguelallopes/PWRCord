@@ -1,0 +1,43 @@
+name: Test and Build PWRCord (Push) 
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    
+jobs:   
+  test:
+    name: Test PWRCord in 
+    runs-on: ${{matrix.os}}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: [3.7, 3.8, 3.9, "3.10"]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: install dependencies
+      run: pip install poetry --upgrade
+    
+    - name: install PWRCord
+      run: poetry install 
+    
+    - name: test file formatting
+      run: poetry run black --check pwrcord tests
+      
+    - name: test library
+      run: poetry run pytest tests
+
+    - name: build library
+      run: poetry build
+    
+    - uses: actions/upload-artifact@v2
+      with:
+        name: pwrcord-py${{ matrix.python-version }}-${{ matrix.os }}
+        path: dist
+      
+    

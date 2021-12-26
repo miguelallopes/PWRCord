@@ -1,0 +1,40 @@
+[tool.poetry]
+name = "pwrcord"
+version = "0.0.1"
+description = "Low-level, feature rich and easy to use discord python wrapper"
+authors = ["PWRScript <powerofthescript@outlook.com>"]
+maintainers = ["PWRScript <powerofthescript@outlook.com>"]
+license = "MIT"
+homepage = "https://github.com/PWRScript/pwrcord"
+repository = "https://github.com/PWRScript/pwrcord"
+readme = "README.md"
+keywords = ["discord", "api", "bot", "pwrcord"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Typing :: Typed",
+    "Topic :: Communications :: Chat"
+
+]
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/PWRScript/pwrcord/issues"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+aiohttp = {extras = ["speedups"], version = "^3.8.1"}
+orjson = "^3.6.5"
+
+[tool.poetry.dev-dependencies]
+black = "^21.12b0"
+pytest = "^6.2.5"
+pytest-asyncio = "^0.16.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
